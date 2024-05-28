@@ -1,1 +1,2 @@
 nano .gitattributes
+*.php text eol=lf
