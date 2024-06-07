@@ -1,157 +1,102 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #121212;
-    color: #ddd;
-    line-height: 1.6;
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    overflow: hidden;
+
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
 }
 
-header {
-    background: #1f1f1f;
-    color: #fff;
-    padding-top: 30px;
-    min-height: 70px;
-    border-bottom: #007bff 3px solid;
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
 }
 
-header a {
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-}
 
-header ul {
-    padding: 0;
-    list-style: none;
-}
-
-header li {
-    display: inline;
-    padding: 0 20px 0 20px;
-}
-
-header #branding {
-    float: left;
-}
-
-header nav {
-    float: right;
-    margin-top: 10px;
-}
-
-header .highlight, header .current a {
-    color: #007bff;
-    font-weight: bold;
-}
-
-header a:hover {
-    color: #007bff;
-    font-weight: bold;
-}
-
-section {
-    padding: 20px 0;
-}
-
-#home {
-    background: url('images/home-bg.jpg') no-repeat center center/cover;
-    color: #fff;
-    text-align: center;
-    padding-top: 150px;
-    padding-bottom: 150px;
-    position: relative;
-}
-
-#home .overlay {
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
 }
 
-#home .container {
-    position: relative;
-    z-index: 2;
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
 }
 
-#home h2 {
-    font-size: 50px;
-    margin-top: 0;
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
 }
 
-.btn {
-    display: inline-block;
-    color: #fff;
-    background: #007bff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.btn:hover {
-    background: #0056b3;
-}
-
-#services .service, #domains .domain {
-    background: #1f1f1f;
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#services .service img, #domains .domain img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-#services .service h3, #domains .domain h3 {
-    margin-top: 0;
-}
-
-#contact form {
-    background: #1f1f1f;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-#contact label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-#contact input, #contact textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background: #333;
-    color: #fff;
-}
-
-footer {
-    background: #1f1f1f;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
-}
-
-footer p {
-    margin: 0;
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
 }
